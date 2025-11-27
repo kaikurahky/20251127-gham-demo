@@ -179,8 +179,6 @@ function setupEventListeners() {
  * キーダウン処理
  */
 function handleKeyDown(e) {
-    console.log(`[KEY] キーダウン: ${e.key}`);
-    
     switch (e.key) {
         case 'ArrowLeft':
             keys.left = true;
@@ -567,7 +565,7 @@ function updateInvaderSpeed() {
     
     // 残り数に応じて指数的に速度アップ
     // 残り全部: 1000ms, 残り1体: 100ms (10倍速)
-    const speedMultiplier = Math.pow(GAME_CONFIG.MAX_SPEED_MULTIPLIER, 1 - ratio);
+    const speedMultiplier = GAME_CONFIG.MAX_SPEED_MULTIPLIER ** (1 - ratio);
     invaderMoveInterval = 1000 / speedMultiplier;
     
     // 最低間隔を設定
@@ -894,8 +892,8 @@ function draw() {
     // 弾描画
     drawBullets();
     
-    // 一時停止表示
-    if (gameState.isPaused && !document.getElementById('hit-popup').classList.contains('hidden') === false) {
+    // 一時停止表示（ポップアップが表示されていない場合のみ）
+    if (gameState.isPaused && document.getElementById('hit-popup').classList.contains('hidden')) {
         drawPauseText();
     }
 }
