@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スペースインベーダー</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- CRTモニター風のコンテナ -->
+    <div id="game-container" class="crt-monitor">
+        <!-- ゲーム情報バー -->
+        <div class="info-bar">
+            <!-- スコア表示 -->
+            <div class="score-section">
+                <span class="label">SCORE</span>
+                <div id="score" class="value">0000</div>
+            </div>
+            <!-- ハイスコア表示 -->
+            <div class="highscore-section">
+                <span class="label">HI-SCORE</span>
+                <div id="high-score" class="value">0000</div>
+            </div>
+            <!-- 残機表示 -->
+            <div class="lives-section">
+                <span class="label">LIVES</span>
+                <div id="lives" class="lives-container">
+                    <span class="life-icon">▲</span>
+                    <span class="life-icon">▲</span>
+                    <span class="life-icon">▲</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ゲームキャンバス -->
+        <div class="canvas-container">
+            <canvas id="game-canvas"></canvas>
+            <!-- 被弾時の赤いオーバーレイ -->
+            <div id="hit-overlay" class="hit-overlay"></div>
+            <!-- CRTスキャンライン効果 -->
+            <div class="scanlines"></div>
+        </div>
+        
+        <!-- コントロールバー -->
+        <div class="control-bar">
+            <button id="start-btn" class="btn-arcade btn-green">
+                START (S)
+            </button>
+            <button id="pause-btn" class="btn-arcade btn-yellow">
+                PAUSE (P)
+            </button>
+            <button id="reset-btn" class="btn-arcade btn-red">
+                RESET (R)
+            </button>
+        </div>
+        
+        <!-- ステージ表示 -->
+        <div class="stage-bar">
+            <span>STAGE: <span id="stage">1</span></span>
+        </div>
+    </div>
+    
+    <!-- ゲームオーバーポップアップ -->
+    <div id="game-over-popup" class="popup-overlay hidden">
+        <div class="popup-content popup-gameover">
+            <h2 class="popup-title blink">GAME OVER</h2>
+            <div class="popup-score">
+                <p class="score-label">YOUR SCORE</p>
+                <p id="final-score" class="score-value">0000</p>
+            </div>
+            <div class="popup-highscore">
+                <p class="highscore-label">HIGH SCORE</p>
+                <p id="final-high-score" class="highscore-value">0000</p>
+            </div>
+            <div class="popup-buttons">
+                <button id="restart-btn" class="btn-arcade btn-green">
+                    RESTART
+                </button>
+                <button id="popup-reset-btn" class="btn-arcade btn-red">
+                    RESET
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 被弾時の再開ポップアップ -->
+    <div id="hit-popup" class="popup-overlay hidden">
+        <div class="popup-content popup-hit">
+            <h2 class="popup-title-hit">被弾！</h2>
+            <p class="remaining-lives-text">残機: <span id="remaining-lives">2</span></p>
+            <button id="continue-btn" class="btn-arcade btn-green">
+                CONTINUE
+            </button>
+        </div>
+    </div>
+    
+    <!-- 操作説明（初期表示） -->
+    <div id="instructions" class="instructions">
+        <p>← → : 移動 | SPACE : 発射 | S : 開始 | P : 一時停止 | R : リセット</p>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
